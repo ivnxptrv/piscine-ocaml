@@ -12,5 +12,6 @@ let () =
   print_endline (string_of_int (ackermann 0 0)) ;
   print_endline (string_of_int (ackermann 2 3)) ;
   print_endline (string_of_int (ackermann 4 1))
+(* print_endline (string_of_int (ackermann 40 40)) *)
 
 (* ocamlopt *.ml && ./a.out *)
