@@ -10,40 +10,39 @@
 (* n -- number of bits *)
 (* we pefix previous sequnece with 0 the mirror previous gray and prefix with 1 *)
 
-(* generates new list of strings with prepended string *)
-let rec prepend_list lst sym =
-  match lst with
-  | [] ->
-      []
-  | head :: tail ->
-      (sym ^ head) :: prepend_list tail sym
-
 (* let () = *)
 (*   let lst1 = ["a"; "b"] in *)
 (*   print_list (prepend_list lst1 "a") *)
-
-let rec print_list = function
-  | [] ->
-      ()
-  | head :: tail ->
-      print_string head ; print_char ' ' ; print_list tail
-
-let rec reflect_list ?(acc = []) lst =
-  match lst with
-  | [] ->
-      acc
-  | head :: tail ->
-      reflect_list ~acc:(head :: acc) tail
-
-(* we just reconcat lst1 and when we touch last elm of lst1 we concat :: with lst2 as its tail *)
-let rec concat_lists lst1 lst2 =
-  match lst1 with [] -> lst2 | head :: tail -> head :: concat_lists tail lst2
 
 (* let () = *)
 (*   let lst1 = ["a"; "b"] in *)
 (*   print_list (prepend_list lst1 "a") *)
 
 let rec gray n =
+  let rec reflect_list ?(acc = []) lst =
+    match lst with
+    | [] ->
+        acc
+    | head :: tail ->
+        reflect_list ~acc:(head :: acc) tail
+  in
+  (* generates new list of strings with prepended string *)
+  let rec prepend_list lst sym =
+    match lst with
+    | [] ->
+        []
+    | head :: tail ->
+        (sym ^ head) :: prepend_list tail sym
+  in
+  (* we just reconcat lst1 and when we touch last elm of lst1 we concat :: with lst2 as its tail *)
+  let rec concat_lists lst1 lst2 =
+    match lst1 with
+    | [] ->
+        lst2
+    | head :: tail ->
+        head :: concat_lists tail lst2
+  in
+  (* main func body *)
   if n = 0 then [""]
   else
     let direct_seq = gray (n - 1) in
@@ -53,6 +52,12 @@ let rec gray n =
     concat_lists seq1 seq2
 
 let () =
+  let rec print_list = function
+    | [] ->
+        ()
+    | head :: tail ->
+        print_string head ; print_char ' ' ; print_list tail
+  in
   print_list (gray 0) ;
   print_char '\n' ;
   print_list (gray 1) ;
