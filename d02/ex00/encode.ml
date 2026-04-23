@@ -2,6 +2,8 @@
 
 type 'a run_length = 'a list -> (int * 'a) list
 
+(* type run_length = char list -> (int * char) list *)
+
 let encode lst =
   let rec next lst symbol count =
     match lst with
