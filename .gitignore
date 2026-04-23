@@ -7,4 +7,4 @@ tmp/
 *.cmx
 *.o
 a.out
-
+._d
