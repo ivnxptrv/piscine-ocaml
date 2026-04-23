@@ -43,7 +43,8 @@ let rec gray n =
         head :: concat_lists tail lst2
   in
   (* main func body *)
-  if n = 0 then [""]
+  if n < 0 then []
+  else if n = 0 then [""]
   else
     let direct_seq = gray (n - 1) in
     let mirrored_seq = reflect_list direct_seq in
@@ -67,6 +68,8 @@ let () =
   print_list (gray 3) ;
   print_char '\n' ;
   print_list (gray 4) ;
+  print_char '\n' ;
+  print_list (gray (-2)) ;
   print_char '\n'
 
 (* gray 0 = "" *)
