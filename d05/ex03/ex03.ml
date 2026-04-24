@@ -62,6 +62,8 @@ functor
     type t = int
 
     let of_float v =
+      (* lsl -- same as << in C, bit shift ( 1 << 8 ) *)
+      (* we moved all bits to an interger part of IEEE float *)
       let scaled = v *. float_of_int (1 lsl Module.bits) in
       int_of_float (if scaled >= 0.0 then scaled +. 0.5 else scaled -. 0.5)
 
