@@ -11,13 +11,23 @@ module Pair : PAIR = struct
   let pair = (21, 42)
 end
 
-module MakeFst (Module : PAIR) = struct
-  let x, _ = Module.pair
-end
+module type MAKEPROJECTION = functor (P : PAIR) -> VAL
 
-module MakeSnd (Module : PAIR) = struct
-  let _, x = Module.pair
-end
+module MakeFst : MAKEPROJECTION =
+functor
+  (Module : PAIR)
+  ->
+  struct
+    let x, _ = Module.pair
+  end
+
+module MakeSnd : MAKEPROJECTION =
+functor
+  (Module : PAIR)
+  ->
+  struct
+    let _, x = Module.pair
+  end
 
 module Fst : VAL = MakeFst (Pair)
 
