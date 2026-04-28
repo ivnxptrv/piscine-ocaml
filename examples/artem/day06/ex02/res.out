@@ -1,0 +1,108 @@
+=== BATTLE SIMULATION: Doctor vs Dalek vs Human ===
+
+--- Creating characters ---
+Initializing Rose Tyler with 100 HP
+Doctor Who is born!
+
+--- Initial Status ---
+people(name=Rose Tyler, hp=100)
+doctor(name=Who, age=900, hp=100, sidekick=people(name=Rose Tyler, hp=100))
+dalek(name=DalekUwz, hp=100, shield=true)
+
+--- Introductions ---
+I’m Rose Tyler! Do you know the Doctor?
+Hi! I'm the Doctor!
+Exterminate! Exterminate!
+
+--- Round 1: Dalek attacks the Doctor ---
+Exterminate!
+Doctor Who takes 30 damage! HP: 70
+doctor(name=Who, age=900, hp=70, sidekick=people(name=Rose Tyler, hp=100))
+
+--- Round 2: Doctor counterattacks ---
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+Shield absorbed the attack!
+dalek(name=DalekUwz, hp=100, shield=false)
+
+--- Round 3: Dalek attacks again ---
+Exterminate!
+Doctor Who takes 30 damage! HP: 40
+doctor(name=Who, age=900, hp=40, sidekick=people(name=Rose Tyler, hp=100))
+
+--- Round 4: Doctor attacks (shield down) ---
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+DalekUwz takes 25 damage! HP: 75
+dalek(name=DalekUwz, hp=75, shield=false)
+
+--- Round 5: Dalek targets companion ---
+Rose Tyler takes 100 damage! HP: 0
+Aaaarghh!
+people(name=Rose Tyler, hp=0)
+dalek(name=DalekUwz, hp=75, shield=true)
+
+--- Round 6: Doctor retaliates ---
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+Shield absorbed the attack!
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+DalekUwz takes 25 damage! HP: 50
+dalek(name=DalekUwz, hp=50, shield=false)
+
+--- The Doctor travels back in time to save Rose ---
+          ___
+  _______(_@_)_______
+ | POLICE      BOX   |
+ |___________________|
+  | _ | | == | | _ |
+  | _ | | == | | _ |
+  |   | |    | |   |
+  |   | |    | |   |
+  |   | |    | |   |
+  |   | |    | |   |
+  |   | |    | |   |
+  |   | |    | |   |
+  |___|_|____|_|___|
+doctor(name=Who, age=904, hp=40, sidekick=people(name=Rose Tyler, hp=0))
+
+--- Dalek repairs itself ---
+Dalek is repaired!
+dalek(name=DalekUwz, hp=100, shield=true)
+
+--- Final Showdown ---
+Exterminate!
+Doctor Who takes 30 damage! HP: 10
+Exterminate!
+Doctor Who takes 30 damage! HP: -20
+Regenerating...
+Exterminate!
+Doctor Who takes 30 damage! HP: 70
+Exterminate!
+Doctor Who takes 30 damage! HP: 40
+doctor(name=Who, age=904, hp=40, sidekick=people(name=Rose Tyler, hp=0))
+
+--- Doctor delivers final blow ---
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+Shield absorbed the attack!
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+DalekUwz takes 25 damage! HP: 75
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+DalekUwz takes 25 damage! HP: 50
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+DalekUwz takes 25 damage! HP: 25
+The Doctor uses the sonic screwdriver!
+Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii
+DalekUwz takes 25 damage! HP: 0
+Emergency Temporal Shift!
+
+=== BATTLE COMPLETE ===
+--- Final Status ---
+people(name=Rose Tyler, hp=0)
+doctor(name=Who, age=904, hp=40, sidekick=people(name=Rose Tyler, hp=0))
+dalek(name=DalekUwz, hp=0, shield=false)

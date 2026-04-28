@@ -1,4 +1,4 @@
-SOURCES = doctor.ml people.ml main.ml
+SOURCES = dalek.ml doctor.ml people.ml main.ml
 RESULT = a.out 
 LIBS = unix
 OCAMLFLAGS = -I +unix
