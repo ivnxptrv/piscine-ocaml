@@ -1,7 +1,7 @@
 (* your constructor will only accept a name and a list of atoms  *)
 class virtual molecule name (atoms : Atom.atom list) =
   object (self)
-    val _atoms = atoms
+    method atoms = atoms
 
     method name = name
 
@@ -19,7 +19,7 @@ class virtual molecule name (atoms : Atom.atom list) =
           let sym = a#symbol in
           let count = try Hashtbl.find tbl sym with Not_found -> 0 in
           Hashtbl.replace tbl sym (count + 1) )
-        _atoms ;
+        atoms ;
       (* making list of tuples *)
       let pairs = Hashtbl.fold (fun k v acc -> (k, v) :: acc) tbl [] in
       (* compare func for sorting *)

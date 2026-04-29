@@ -1,37 +1,51 @@
+exception Unbalanced
+
 class virtual reaction (start : (Molecule.molecule * int) list)
   (result : (Molecule.molecule * int) list) =
-  object (self)
+  (* (H20, 2) *)
+  let count_atoms (side : (Molecule.molecule * int) list) =
+    let tbl = Hashtbl.create 16 in
+    List.iter
+      (fun (mol, qty) ->
+        List.iter
+          (fun (a : Atom.atom) ->
+            let n = a#atomic_number in
+            let count = try Hashtbl.find tbl n with Not_found -> 0 in
+            (* if meeet 1st time return 0 + qty: (H20, 2); H = 0 + 2 = 2H *)
+            Hashtbl.replace tbl n (count + qty) )
+          mol#atoms )
+      side ;
+    tbl
+    (* tbl - hastable of atimic_number: count basically count of eah atom in resultin set of atoms *)
+  in
+  let balanced =
+    let start_atoms = count_atoms start in
+    let result_atoms = count_atoms result in
+    let same = ref true in
+    (* we check if on right we have same numebr of atoms as on left for ertain atomic_number *)
+    Hashtbl.iter
+      (fun k v ->
+        let other = try Hashtbl.find result_atoms k with Not_found -> 0 in
+        if v <> other then same := false )
+      start_atoms ;
+    (* we check if on left there was some extra atoms not present in right *)
+    Hashtbl.iter
+      (fun k _ -> if not (Hashtbl.mem start_atoms k) then same := false)
+      result_atoms ;
+    !same
+  in
+  object
+    method get_start =
+      if not balanced then raise Unbalanced ;
+      start
+
+    method get_result =
+      if not balanced then raise Unbalanced ;
+      result
+
+    method is_balanced = balanced
+
     method virtual balance : reaction
-
-    (* must be FUNCTIONAL *)
-    (* (\* Helper to count all atoms in a side *\) *)
-    (* method private count_atoms (side : (Molecule.molecule * int) list) = *)
-    (*   let counts = Hashtbl.create 16 in *)
-    (*   List.iter *)
-    (*     (fun (mol, coeff) -> *)
-    (*       (\* You need a way to get the atoms from the molecule *\) *)
-    (*       List.iter *)
-    (*         (fun atom -> *)
-    (*           let sym = atom#symbol in *)
-    (*           let old_count = *)
-    (*             try Hashtbl.find counts sym with Not_found -> 0 *)
-    (*           in *)
-    (*           Hashtbl.replace counts sym (old_count + coeff) ) *)
-    (*         mol#atoms (\* Assumes molecule has a method 'atoms' *\) ) *)
-    (*     side ; *)
-    (*   counts *)
-    (* method private compare_counts h1 h2 = *)
-    (* if Hashtbl.length h1 <> Hashtbl.length h2 then false *)
-    (* else *)
-    (*     Hashtbl.fold (fun sym count acc -> *)
-    (*     acc && (try Hashtbl.find h2 sym = count with Not_found -> false) *)
-    (*     ) h1 true *)
-
-    method is_balanced =
-      let start_counts = self#count_atoms start in
-      let result_counts = self#count_atoms result in
-      (* Logic to compare two hash tables *)
-      self#compare_counts start_counts result_counts
   end
 (* balanced if num and type of atoms same at start and at the end *)
 (* TODO: we dont need rais exception in get_start as it could be unbalanced*)
