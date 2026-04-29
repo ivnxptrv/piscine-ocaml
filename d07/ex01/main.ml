@@ -12,9 +12,7 @@ let () =
   eth#to_string |> print_endline ;
   print_endline "\n--- Testing equals method ---" ;
   let w2 = new Molecule.water in
-  Printf.printf "water equals water: %b\n" (w#equals (w2 :> Molecule.molecule)) ;
-  Printf.printf "water equals methane: %b\n"
-    (w#equals (ch4 :> Molecule.molecule)) ;
-  Printf.printf "ethanol equals ethanol: %b\n"
-    (eth#equals (eth :> Molecule.molecule))
+  Printf.printf "water equals water: %b\n" (w#equals w2) ;
+  Printf.printf "water equals methane: %b\n" (w#equals ch4) ;
+  Printf.printf "ethanol equals ethanol: %b\n" (eth#equals eth)
 (* :> -- upcast operator to convert class water to general class molecule to match types *)
